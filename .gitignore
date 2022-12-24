@@ -7,9 +7,13 @@
 
 # testing
 /coverage
+README.MD
 
 # production
 /build
+
+# training
+/src/training
 
 # misc
 .DS_Store
