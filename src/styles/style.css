@@ -1,0 +1,32 @@
+/* ---RESETS */
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+.img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ---ROOT VARS */
+
+:root {
+  --font: #f8faff;
+}
+
+/* ---MAIN STYLES */
+body {
+  min-height: 100vh;
+  font-family: var(--font);
+}
