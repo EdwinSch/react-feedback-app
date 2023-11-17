@@ -1,9 +1,11 @@
-const FeedbackItem = () => {
+import Card from "./shared/Card";
+
+const FeedbackItem = ({ id, rating, text }) => {
   return (
-    <div className="card">
-      <div className="num-display">10</div>
-      <div className="text-display">example</div>
-    </div>
+    <Card>
+      <div className="num-display">{rating}</div>
+      <div className="text-display">{text}</div>
+    </Card>
   );
 };
 
