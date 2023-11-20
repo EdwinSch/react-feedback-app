@@ -9,7 +9,7 @@ const Header = ({ text }) => {
 };
 
 Header.defaultProps = {
-  text: "Feedback UI",
+  text: "Feedback",
 };
 
 export default Header;
