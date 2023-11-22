@@ -1,11 +1,14 @@
+// components
 import Header from "./components/Header";
 import FeedbackForm from "./components/FeedbackForm";
 import FeedbackStats from "./components/FeedbackStats";
 import FeedbackList from "./components/FeedbackList";
 import feedbackData from "./data";
-
+// hooks
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+// context
+import { FeedbackProvider } from "./context/FeedbackContext";
 
 function App() {
   const [feedback, setFeedback] = useState(feedbackData);
@@ -23,14 +26,16 @@ function App() {
   };
 
   return (
-    <>
-      <Header />
-      <div className="container">
-        <FeedbackForm handleAdd={addFeedback} />
-        <FeedbackStats feedback={feedback} />
-        <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
-      </div>
-    </>
+    <FeedbackProvider>
+      <>
+        <Header />
+        <div className="container">
+          <FeedbackForm handleAdd={addFeedback} />
+          <FeedbackStats />
+          <FeedbackList handleDelete={deleteFeedback} />
+        </div>
+      </>
+    </FeedbackProvider>
   );
 }
 
