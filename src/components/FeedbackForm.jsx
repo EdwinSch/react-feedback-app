@@ -16,7 +16,8 @@ const FeedbackForm = () => {
     if (text === "") {
       setIsBtnDisabled(true);
       setMessage(null);
-    } else if (text !== "" && text.trim().length <= 10) {
+    }
+    if (text.trim().length < 10) {
       setIsBtnDisabled(true);
       setMessage("text to short");
     } else {
