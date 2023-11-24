@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 import FeedbackContext from "../context/FeedbackContext";
 
-const FeedbackList = ({ handleDelete }) => {
+const FeedbackList = () => {
   const { feedback } = useContext(FeedbackContext);
 
   if (!feedback || feedback.length === 0) {
@@ -13,9 +13,7 @@ const FeedbackList = ({ handleDelete }) => {
   return (
     <div className="feedback-list">
       {feedback.map((item) => {
-        return (
-          <FeedbackItem key={item.id} {...item} handleDelete={handleDelete} />
-        );
+        return <FeedbackItem key={item.id} {...item} />;
       })}
     </div>
   );
