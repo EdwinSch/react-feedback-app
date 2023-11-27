@@ -20,16 +20,14 @@ git clone [repo]
 npm install
 ```
 
-for front-end: ```
+For front-end:
+
+```
 npm run dev
-
 ```
 
-for json-server:
-```
+For json-server:
 
+```
 npm run server
-
-```
-
 ```
