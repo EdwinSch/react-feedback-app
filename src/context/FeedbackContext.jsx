@@ -27,17 +27,39 @@ export const FeedbackProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  // delete feedback post
-  const deleteFeedback = (id) => {
+  // delete feedback post from LOCAL test data
+  // const deleteFeedback = (id) => {
+  //   if (window.confirm("This action will delete this post!")) {
+  //     setFeedback(feedback.filter((item) => item.id !== id));
+  //   }
+  // };
+
+  // delete feedback post from server/DB data
+  const deleteFeedback = async (id) => {
     if (window.confirm("This action will delete this post!")) {
+      await fetch(`http://localhost:3000/feedback/${id}`, { method: "DELETE" });
+
       setFeedback(feedback.filter((item) => item.id !== id));
     }
   };
 
-  // add feedback post
-  const addFeedback = (newFeedback) => {
-    newFeedback.id = uuidv4();
-    setFeedback([newFeedback, ...feedback]);
+  //---- add feedback to LOCAL test data
+  // const addFeedback = (newFeedback) => {
+  //   newFeedback.id = uuidv4();
+  //   setFeedback([newFeedback, ...feedback]);
+  // };
+
+  // Add to server/DB data
+  const addFeedback = async (newFeedback) => {
+    const response = await fetch("http://localhost:3000/feedback", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newFeedback),
+    });
+    const data = await response.json();
+    setFeedback([data, ...feedback]);
   };
 
   // Set item to edit mode
@@ -49,9 +71,24 @@ export const FeedbackProvider = ({ children }) => {
   };
 
   // Update edit item
-  const updateFeedback = (id, upItem) => {
+  // const updateFeedback = (id, upItem) => {
+  //   setFeedback(
+  //     feedback.map((item) => (item.id === id ? { ...item, ...upItem } : item))
+  //   );
+  // };
+
+  // Update edit item
+  const updateFeedback = async (id, upItem) => {
+    const response = await fetch(`http://localhost:3000/feedback/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(upItem),
+    });
+
+    const data = await response.json();
+
     setFeedback(
-      feedback.map((item) => (item.id === id ? { ...item, ...upItem } : item))
+      feedback.map((item) => (item.id === id ? { ...item, ...data } : item))
     );
   };
 
